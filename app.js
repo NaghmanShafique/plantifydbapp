@@ -6,7 +6,7 @@ app.get('/',(req , res) => {
     res.send("Get API Hit by Naghman.")
 });
 
-app.post('/user' , (req , req) => {
+app.post('/user' , (req , res) => {
     res.send('POST API Hit by Naghman.')
 });
 
