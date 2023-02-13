@@ -1,4 +1,7 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const userModel = require('./model/userSchema');
+const cors = require('cors');
 const app = express();
 const port = process.env.port || 3000;
 
@@ -11,8 +14,18 @@ app.get('/',(req , res) => {
              "Password" : "welcome123" });
 });
 
-app.post('/user' , (req , res) => {
-   res.send("POST API Hit by Naghman.")
+app.post('/api/user' , (req , res) => {
+   console.log("Body" + req.body);
+   userModel.create(req.body , (error , data) => {
+     if(error){
+        res.send("error",error)
+     } else {
+        res.json({
+            message : 'User sucessfully created.',
+            data
+        })
+     }
+   })
 });
 
 app.listen(port , () => {
