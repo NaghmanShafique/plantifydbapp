@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
       });
 });
 
-app.post('/api/signup', (req, res) => {
+app.post('/api/signup', {email,password} ,(req, res) => {
    console.log("Body" + req.body);
 
    const { email, password } = req.body;
@@ -71,7 +71,7 @@ app.post('/api/signup', (req, res) => {
 });
 
 
-app.post('/api/signin', (req , res) => {
+app.post('/api/signin', {email,password} , (req , res) => {
    
    const { email, password } = req.body;
    console.log(`Email and passowrd ${email} and ${password}`);
