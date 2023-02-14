@@ -47,7 +47,7 @@ app.post('/api/signup' ,(req, res) => {
      if (err) {
         console.log(err, "error");
         res.json({
-        message: "Error occured in User Signup.",
+        message: "Error occured in User Signup."+err,
        });
      } else {
         console.log(user, "user");
