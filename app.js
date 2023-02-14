@@ -7,8 +7,6 @@ const app = express();
 const port = process.env.port || 5000;
 require('dotenv').config();
 
-// const baseUri = 'mongodb+srv://plantifydb:plantifydb123@cluster0.2m4sxxs.mongodb.net/mobile-DB'
-
 mongoose
    .connect(process.env.MONGO_URI)
    .then((res) => console.log("mongoDb Connect"))
