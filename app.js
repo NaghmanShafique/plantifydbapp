@@ -5,7 +5,6 @@ const cors = require('cors');
 const app = express();
 const port = process.env.port || 5000;
 
-// const baseUri = 'mongodb+srv://naghman:nnsamaasz@cluster0.udjyj5a.mongodb.net/mobile-DB'
 const baseUri = 'mongodb+srv://plantifydb:plantifydb123@cluster0.2m4sxxs.mongodb.net/mobile-DB'
 
 mongoose
