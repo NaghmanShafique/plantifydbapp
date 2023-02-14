@@ -74,7 +74,7 @@ app.post('/api/signup', (req, res) => {
 app.post('/api/signin', (req , res) => {
    
    const { email, password } = req.body;
-   
+   console.log(`Email and passowrd ${email} and ${password}`);
    if (!email || !password) {
       res.json({ message: "Input Fields required." });
       return;
