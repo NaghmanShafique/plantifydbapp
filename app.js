@@ -76,7 +76,7 @@ app.post('/api/signin', (req , res) => {
    const { email, password } = req.body;
    
    if (!email || !password) {
-      res.json({ message: "Input required in mandatory Fields." });
+      res.json({ message: "Input Fields required." });
       return;
    }
 
