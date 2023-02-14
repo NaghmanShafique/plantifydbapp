@@ -2,13 +2,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const userModel = require('./model/userSchema');
 const cors = require('cors');
+
 const app = express();
 const port = process.env.port || 5000;
+require('dotenv').config();
 
-const baseUri = 'mongodb+srv://plantifydb:plantifydb123@cluster0.2m4sxxs.mongodb.net/mobile-DB'
+// const baseUri = 'mongodb+srv://plantifydb:plantifydb123@cluster0.2m4sxxs.mongodb.net/mobile-DB'
 
 mongoose
-   .connect(baseUri)
+   .connect(process.env.MONGO_URI)
    .then((res) => console.log("mongoDb Connect"))
    .catch((err) => console.log(err, "error"));
 
