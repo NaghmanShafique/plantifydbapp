@@ -33,7 +33,7 @@ app.post('/api/signup' ,(req, res) => {
    const { email, password } = req.body;
 
    if (!email || !password) {
-      res.json({ message: "Input required in mandatory Fields." });
+      res.status(400).json({ message: "Input required in mandatory Fields." });
       return;
    }
 
@@ -45,20 +45,20 @@ app.post('/api/signup' ,(req, res) => {
    userModel.findOne({ email }, (err, user) => {
      if (err) {
         console.log(err, "error");
-        res.json({
+        res.status(500).json({
         message: "Error occured in User Signup."+err,
        });
      } else {
         console.log(user, "user");
          if (user) {
-           res.json({ message: "Email already exists." });
+           res.status(400).json({ message: "Email already exists." });
          } else {
             userModel.create(signUpObj, (error, data) => {
               if (error) {
-                console.log("Post API Error" + error);
+                console.status(500).log("Post API Error" + error);
                 res.send("error", error)
               } else {
-                  res.json({
+                  res.status(200).json({
                   message: 'User sucessfully created.',
                   data
                })
@@ -75,31 +75,31 @@ app.post('/api/signin', (req , res) => {
    const { email, password } = req.body;
    console.log(`Email and passowrd ${email} and ${password}`);
    if (!email || !password) {
-      res.json({ message: "Input Fields required." });
+      res.status(400).json({ message: "Input Fields required." });
       return;
    }
 
    userModel.findOne({ email } , (err , user) => {
       if(err) {
          console.log(err, "error");
-         res.json({
+         res.status(500).json({
          message: "Error occured in User Signin.",
         });
       } else {
          if(user) {
             if (password === user.password) {
-               res.json({
+               res.status(200).json({
                   message: "user successfully login",
                   data: user
                });
             } else {
-               res.json({
+               res.status(400).json({
                  message: "Invalid credential error!",
                });
             }
       } else {
-         res.json({
-           message: "Invalid credential error!",
+         res.status(400).json({
+           message: "Invalid User error!",
          });
       }
     }  
