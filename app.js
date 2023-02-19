@@ -112,20 +112,19 @@ app.post('/api/request' ,(req, res) => {
 
    const { email, phone , latitude , longitude , comments } = req.body;
 
-   if (!email || !phone || !latitude || !longitude || comments ) {
+   if (!email || !phone || !latitude || !longitude || !comments ) {
       res.status(400).json({ message: "Input required in mandatory Fields." });
       return;
    }
 
    const requestObj = {
       email,
-      password,
       phone,
       latitude,
       longitude,
       comments
    };
-      userModel.create(requestObj, (error, data) => {
+   requestModel.create(requestObj, (error, data) => {
               if (error) {
                 console.status(500).log("User Request API Error" + error);
                 res.send("error", error)
