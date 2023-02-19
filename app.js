@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const userModel = require('./model/userSchema');
+const requestModel = require('./model/userRequest')
 const cors = require('cors');
 
 const app = express();
@@ -105,6 +106,38 @@ app.post('/api/signin', (req , res) => {
     }  
   });
 })
+
+app.post('/api/request' ,(req, res) => {
+   console.log("Body" + req.body);
+
+   const { email, phone , latitude , longitude , comments } = req.body;
+
+   if (!email || !phone || !latitude || !longitude || comments ) {
+      res.status(400).json({ message: "Input required in mandatory Fields." });
+      return;
+   }
+
+   const requestObj = {
+      email,
+      password,
+      phone,
+      latitude,
+      longitude,
+      comments
+   };
+      userModel.create(requestObj, (error, data) => {
+              if (error) {
+                console.status(500).log("User Request API Error" + error);
+                res.send("error", error)
+              } else {
+                  res.status(200).json({
+                  message: 'User Request sucessfully created.',
+                  data
+               })
+            }
+         })
+});
+
 
 app.listen(port, () => {
    console.log('Server is running on Port' + port);
